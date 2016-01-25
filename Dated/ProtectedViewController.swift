@@ -21,7 +21,17 @@ class ProtectedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func signOutOfFacebook(sender: AnyObject) {
+        PFUser.logOutInBackgroundWithBlock { (error:NSError?) -> Void in
+           
+            let login = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+            let loginNav = UINavigationController(rootViewController: login)
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.window?.rootViewController = loginNav
 
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
